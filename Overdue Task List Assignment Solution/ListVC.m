@@ -30,10 +30,7 @@
     self.sortMode = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_MODE];
     
     // Prepare the RefreshControl - pull down to sort by due date (and switch to automatic sort mode if in manual mode)
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to sort by date"];
-    self.refreshControl = refreshControl;
-    [self.refreshControl addTarget:self action:@selector(sortTaskListByDateAndSwitchToAutomaticSorting) forControlEvents:UIControlEventValueChanged];
+    [self createRefreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,6 +78,9 @@
         
         // Disable Edit button
         self.navigationItem.leftBarButtonItem.enabled = NO;
+        
+        // Remove RefreshControl
+        self.refreshControl = nil;
         
         return 0;
     }
@@ -221,6 +221,11 @@
 // New task added
 -(void)didSaveTaskWithTitle:(NSString *)title description:(NSString *)description date:(NSDate *)date
 {
+    // Re-create RefreshControl if task list has been empty
+    if (self.taskList.count == 0) {
+        [self createRefreshControl];
+    }
+    
     // Create task with data from AddVC
     Task *task = [[Task alloc] initWithTitle:title description:description date:date];
     
@@ -410,6 +415,14 @@
 {
     self.sortMode = AUTOMATIC_SORT_MODE;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.sortMode) forKey:SORT_MODE];
+}
+
+-(void)createRefreshControl
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to sort by date"];
+    self.refreshControl = refreshControl;
+    [self.refreshControl addTarget:self action:@selector(sortTaskListByDateAndSwitchToAutomaticSorting) forControlEvents:UIControlEventValueChanged];
 }
 
 #pragma mark - IBActions
