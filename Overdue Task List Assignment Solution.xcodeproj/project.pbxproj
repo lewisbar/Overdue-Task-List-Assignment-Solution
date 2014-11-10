@@ -9,11 +9,21 @@
 /* Begin PBXBuildFile section */
 		DF668FBD19FCDC15002C2008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FBC19FCDC15002C2008 /* main.m */; };
 		DF668FC019FCDC15002C2008 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FBF19FCDC15002C2008 /* AppDelegate.m */; };
-		DF668FC319FCDC15002C2008 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FC219FCDC15002C2008 /* ViewController.m */; };
+		DF668FC319FCDC15002C2008 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FC219FCDC15002C2008 /* ListVC.m */; };
 		DF668FC619FCDC15002C2008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF668FC419FCDC15002C2008 /* Main.storyboard */; };
 		DF668FC819FCDC15002C2008 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF668FC719FCDC15002C2008 /* Images.xcassets */; };
 		DF668FCB19FCDC15002C2008 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF668FC919FCDC15002C2008 /* LaunchScreen.xib */; };
 		DF668FD719FCDC15002C2008 /* Overdue_Task_List_Assignment_SolutionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FD619FCDC15002C2008 /* Overdue_Task_List_Assignment_SolutionTests.m */; };
+		DF668FE219FCDC9B002C2008 /* AddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FE119FCDC9B002C2008 /* AddVC.m */; };
+		DF668FE519FCDCAA002C2008 /* DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FE419FCDCAA002C2008 /* DetailVC.m */; };
+		DF668FE819FCDCBD002C2008 /* EditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FE719FCDCBD002C2008 /* EditVC.m */; };
+		DF668FEB19FCDD49002C2008 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = DF668FEA19FCDD49002C2008 /* Task.m */; };
+		DF7E980E1A0C112D008002EF /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7E980D1A0C112D008002EF /* TPKeyboardAvoidingScrollView.m */; };
+		DF7E98111A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7E98101A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		DFBC96411A0D5F2300FE0635 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBC963D1A0D5F2300FE0635 /* checkBox.png */; };
+		DFBC96421A0D5F2300FE0635 /* checkBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBC963E1A0D5F2300FE0635 /* checkBox@2x.png */; };
+		DFBC96431A0D5F2300FE0635 /* checkBoxMarked.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBC963F1A0D5F2300FE0635 /* checkBoxMarked.png */; };
+		DFBC96441A0D5F2300FE0635 /* checkBoxMarked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFBC96401A0D5F2300FE0635 /* checkBoxMarked@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +42,30 @@
 		DF668FBC19FCDC15002C2008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DF668FBE19FCDC15002C2008 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DF668FBF19FCDC15002C2008 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DF668FC119FCDC15002C2008 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DF668FC219FCDC15002C2008 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DF668FC119FCDC15002C2008 /* ListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
+		DF668FC219FCDC15002C2008 /* ListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
 		DF668FC519FCDC15002C2008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF668FC719FCDC15002C2008 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF668FCA19FCDC15002C2008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DF668FD019FCDC15002C2008 /* Overdue Task List Assignment SolutionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overdue Task List Assignment SolutionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF668FD519FCDC15002C2008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF668FD619FCDC15002C2008 /* Overdue_Task_List_Assignment_SolutionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Overdue_Task_List_Assignment_SolutionTests.m; sourceTree = "<group>"; };
+		DF668FE019FCDC9B002C2008 /* AddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddVC.h; sourceTree = "<group>"; };
+		DF668FE119FCDC9B002C2008 /* AddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddVC.m; sourceTree = "<group>"; };
+		DF668FE319FCDCAA002C2008 /* DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailVC.h; sourceTree = "<group>"; };
+		DF668FE419FCDCAA002C2008 /* DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailVC.m; sourceTree = "<group>"; };
+		DF668FE619FCDCBD002C2008 /* EditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditVC.h; sourceTree = "<group>"; };
+		DF668FE719FCDCBD002C2008 /* EditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditVC.m; sourceTree = "<group>"; };
+		DF668FE919FCDD49002C2008 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		DF668FEA19FCDD49002C2008 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		DF7E980C1A0C112D008002EF /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		DF7E980D1A0C112D008002EF /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		DF7E980F1A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		DF7E98101A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		DFBC963D1A0D5F2300FE0635 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
+		DFBC963E1A0D5F2300FE0635 /* checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBox@2x.png"; sourceTree = "<group>"; };
+		DFBC963F1A0D5F2300FE0635 /* checkBoxMarked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxMarked.png; sourceTree = "<group>"; };
+		DFBC96401A0D5F2300FE0635 /* checkBoxMarked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxMarked@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +109,17 @@
 			children = (
 				DF668FBE19FCDC15002C2008 /* AppDelegate.h */,
 				DF668FBF19FCDC15002C2008 /* AppDelegate.m */,
-				DF668FC119FCDC15002C2008 /* ViewController.h */,
-				DF668FC219FCDC15002C2008 /* ViewController.m */,
 				DF668FC419FCDC15002C2008 /* Main.storyboard */,
+				DF668FC119FCDC15002C2008 /* ListVC.h */,
+				DF668FC219FCDC15002C2008 /* ListVC.m */,
+				DF668FE019FCDC9B002C2008 /* AddVC.h */,
+				DF668FE119FCDC9B002C2008 /* AddVC.m */,
+				DF668FE319FCDCAA002C2008 /* DetailVC.h */,
+				DF668FE419FCDCAA002C2008 /* DetailVC.m */,
+				DF668FE619FCDCBD002C2008 /* EditVC.h */,
+				DF668FE719FCDCBD002C2008 /* EditVC.m */,
+				DF668FE919FCDD49002C2008 /* Task.h */,
+				DF668FEA19FCDD49002C2008 /* Task.m */,
 				DF668FC719FCDC15002C2008 /* Images.xcassets */,
 				DF668FC919FCDC15002C2008 /* LaunchScreen.xib */,
 				DF668FBA19FCDC15002C2008 /* Supporting Files */,
@@ -96,6 +130,14 @@
 		DF668FBA19FCDC15002C2008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFBC963D1A0D5F2300FE0635 /* checkBox.png */,
+				DFBC963E1A0D5F2300FE0635 /* checkBox@2x.png */,
+				DFBC963F1A0D5F2300FE0635 /* checkBoxMarked.png */,
+				DFBC96401A0D5F2300FE0635 /* checkBoxMarked@2x.png */,
+				DF7E980C1A0C112D008002EF /* TPKeyboardAvoidingScrollView.h */,
+				DF7E980D1A0C112D008002EF /* TPKeyboardAvoidingScrollView.m */,
+				DF7E980F1A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				DF7E98101A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
 				DF668FBB19FCDC15002C2008 /* Info.plist */,
 				DF668FBC19FCDC15002C2008 /* main.m */,
 			);
@@ -199,8 +241,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFBC96431A0D5F2300FE0635 /* checkBoxMarked.png in Resources */,
+				DFBC96421A0D5F2300FE0635 /* checkBox@2x.png in Resources */,
 				DF668FC619FCDC15002C2008 /* Main.storyboard in Resources */,
 				DF668FCB19FCDC15002C2008 /* LaunchScreen.xib in Resources */,
+				DFBC96411A0D5F2300FE0635 /* checkBox.png in Resources */,
+				DFBC96441A0D5F2300FE0635 /* checkBoxMarked@2x.png in Resources */,
 				DF668FC819FCDC15002C2008 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF668FC319FCDC15002C2008 /* ViewController.m in Sources */,
+				DF668FEB19FCDD49002C2008 /* Task.m in Sources */,
+				DF7E980E1A0C112D008002EF /* TPKeyboardAvoidingScrollView.m in Sources */,
+				DF668FE819FCDCBD002C2008 /* EditVC.m in Sources */,
+				DF668FE219FCDC9B002C2008 /* AddVC.m in Sources */,
+				DF7E98111A0C1160008002EF /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				DF668FE519FCDCAA002C2008 /* DetailVC.m in Sources */,
+				DF668FC319FCDC15002C2008 /* ListVC.m in Sources */,
 				DF668FC019FCDC15002C2008 /* AppDelegate.m in Sources */,
 				DF668FBD19FCDC15002C2008 /* main.m in Sources */,
 			);
@@ -412,6 +464,7 @@
 				DF668FDC19FCDC15002C2008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF668FDD19FCDC15002C2008 /* Build configuration list for PBXNativeTarget "Overdue Task List Assignment SolutionTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +473,7 @@
 				DF668FDF19FCDC15002C2008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
