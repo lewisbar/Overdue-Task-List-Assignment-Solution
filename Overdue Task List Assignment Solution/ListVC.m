@@ -115,16 +115,16 @@
     
     // Color coding by completion or due date
     if (task.completion) {
-        cell.backgroundColor = [UIColor grayColor]; // completed: gray
+        cell.backgroundColor = COLOR_COMPLETED;
     }
-    else if ([task.date timeIntervalSinceNow] <= 0) {
-        cell.backgroundColor = [UIColor colorWithRed:1 green:0.2 blue:0.2 alpha:1]; // overdue: red
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) {
+        cell.backgroundColor = [UIColor colorWithRed:1 green:0.2 blue:0.2 alpha:1];
     }
-    else if ([task.date timeIntervalSinceNow] <= 24*60*60) {
-        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.3 alpha:1]; // due in the next 24 hrs: yellow
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) {
+        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.3 alpha:1];
     }
     else {
-        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]; // due later: white
+        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
     }
     
     return cell;

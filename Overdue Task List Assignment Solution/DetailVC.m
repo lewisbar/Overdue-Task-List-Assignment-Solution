@@ -80,16 +80,16 @@
     
     // Background color
     if (self.task.completion) {
-        self.view.backgroundColor = [UIColor grayColor]; // completed: gray
+        self.view.backgroundColor = COLOR_COMPLETED;
     }
-    else if ([self.task.date timeIntervalSinceNow] <= 0) {
-        self.view.backgroundColor = [UIColor colorWithRed:1 green:0.2 blue:0.2 alpha:1]; // overdue: red
+    else if ([self.task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) {
+        self.view.backgroundColor = COLOR_OVERDUE;
     }
-    else if ([self.task.date timeIntervalSinceNow] <= 24*60*60) {
-        self.view.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.3 alpha:1]; // due in the next 24 hrs: yellow
+    else if ([self.task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) {
+        self.view.backgroundColor = COLOR_SOON;
     }
     else {
-        self.view.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]; // due later: white
+        self.view.backgroundColor = COLOR_LATER;
     }
 }
 
