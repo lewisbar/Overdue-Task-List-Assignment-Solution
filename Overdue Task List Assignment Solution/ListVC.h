@@ -10,9 +10,7 @@
 #import "Task.h"
 #import "AddVC.h"
 #import "DetailVC.h"
-
-#define MANUAL_SORT_MODE YES
-#define AUTOMATIC_SORT_MODE NO
+#import "Defines.h"
 
 @interface ListVC : UITableViewController <AddVCDelegate, DetailVCDelegate>
 

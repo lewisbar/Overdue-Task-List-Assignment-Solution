@@ -13,13 +13,15 @@
 @end
 
 @implementation ListVC
+#define AUTOMATIC_SORT_MODE NO
+#define MANUAL_SORT_MODE YES
 #define TASK_LIST @"task list"
 #define SORT_MODE @"sort mode"
 #define TASK_ORDER_HAS_AT_LEAST_ONCE_BEEN_EDITED @"task order has at least once been edited"
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     // Uncomment to reset the app (deletes all tasks and settings, makes the tutorial AlertView appear again):
     // [self setTheWholeAppBackToOriginalState];
     
@@ -80,6 +82,8 @@
         self.navigationItem.leftBarButtonItem.enabled = NO;
         
         // Remove RefreshControl
+        // endRefreshing must be called in case the user has just pulled the list down, which is easy to happen accidently. Just a tiny bit suffices for a warning in the console.
+        [self.refreshControl endRefreshing];
         self.refreshControl = nil;
         
         return 0;
@@ -258,13 +262,13 @@
 }
 
 #pragma mark - Helper Methods
+#pragma mark Persistance
 // Dictionary keys
 #define TASK_TITLE @"title"
 #define TASK_DESCRIPTION @"description"
 #define TASK_DATE @"date"
 #define TASK_COMPLETION @"completion"
 
-#pragma mark Persistance
 // Saving
 -(void)saveChanges
 {

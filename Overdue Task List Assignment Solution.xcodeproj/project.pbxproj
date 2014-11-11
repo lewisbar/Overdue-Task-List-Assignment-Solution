@@ -66,6 +66,7 @@
 		DFBC963E1A0D5F2300FE0635 /* checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBox@2x.png"; sourceTree = "<group>"; };
 		DFBC963F1A0D5F2300FE0635 /* checkBoxMarked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxMarked.png; sourceTree = "<group>"; };
 		DFBC96401A0D5F2300FE0635 /* checkBoxMarked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxMarked@2x.png"; sourceTree = "<group>"; };
+		DFBC96451A11663000FE0635 /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +131,7 @@
 		DF668FBA19FCDC15002C2008 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFBC96451A11663000FE0635 /* Defines.h */,
 				DFBC963D1A0D5F2300FE0635 /* checkBox.png */,
 				DFBC963E1A0D5F2300FE0635 /* checkBox@2x.png */,
 				DFBC963F1A0D5F2300FE0635 /* checkBoxMarked.png */,
