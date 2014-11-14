@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Defines.h"
 
 @interface Task : NSObject
 
@@ -15,6 +16,10 @@
 @property (strong, nonatomic) NSDate *date;
 @property (nonatomic) BOOL completion;
 
--(Task *)initWithTitle:(NSString *)title description:(NSString *)description date:(NSDate *)date;
+// Designated initializer
+-(id)initWithTitle:(NSString *)title description:(NSString *)description date:(NSDate *)date;
+
+// Make the task savable
+-(NSDictionary *)taskAsAPropertyList;
 
 @end

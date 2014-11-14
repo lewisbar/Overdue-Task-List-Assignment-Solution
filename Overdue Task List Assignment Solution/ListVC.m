@@ -118,18 +118,7 @@
     }
     
     // Color coding by completion or due date
-    if (task.completion) {
-        cell.backgroundColor = COLOR_COMPLETED;
-    }
-    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) {
-        cell.backgroundColor = [UIColor colorWithRed:1 green:0.2 blue:0.2 alpha:1];
-    }
-    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) {
-        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.3 alpha:1];
-    }
-    else {
-        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-    }
+    cell.backgroundColor = [self colorForTask:task];
     
     return cell;
 }
@@ -263,34 +252,18 @@
 
 #pragma mark - Helper Methods
 #pragma mark Persistance
-// Dictionary keys
-#define TASK_TITLE @"title"
-#define TASK_DESCRIPTION @"description"
-#define TASK_DATE @"date"
-#define TASK_COMPLETION @"completion"
-
 // Saving
 -(void)saveChanges
 {
     // Make tasklist savable
     NSMutableArray *savableTaskList = [[NSMutableArray alloc] init];
     for (Task *task in self.taskList) {
-        [savableTaskList addObject:[self taskAsAPropertyList:task]];
+        [savableTaskList addObject:[task taskAsAPropertyList]];
     }
     
     // Save tasklist
     [[NSUserDefaults standardUserDefaults] setObject:savableTaskList forKey:TASK_LIST];
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-// Make a task savable by transforming it to an NSDictionary
--(NSDictionary *)taskAsAPropertyList:(Task *)task
-{
-    NSDictionary *dictionary = @{TASK_TITLE : task.title,
-                                 TASK_DESCRIPTION : task.taskDescription,
-                                 TASK_DATE : task.date,
-                                 TASK_COMPLETION : @(task.completion)};
-    return dictionary;
 }
 
 // Loading
@@ -325,12 +298,31 @@
     return [mutableAttributedString copy];
 }
 
-// String from Date.
+// String from Date
 -(NSString *)stringFromDate:(NSDate *)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd 'at' HH:mm"];
     return [formatter stringFromDate:date];
+}
+
+// Color coding by completion or due date
+-(UIColor *)colorForTask:(Task *)task
+{
+    UIColor *color = [[UIColor alloc] init];
+    if (task.completion) {
+        color = COLOR_COMPLETED;
+    }
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) {
+        color = COLOR_OVERDUE;
+    }
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) {
+        color = COLOR_SOON;
+    }
+    else {
+        color = COLOR_LATER;
+    }
+    return color;
 }
 
 #pragma mark Sorting
