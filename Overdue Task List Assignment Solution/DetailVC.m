@@ -66,18 +66,12 @@
 -(UIColor *)colorForTask:(Task *)task
 {
     UIColor *color = [[UIColor alloc] init];
-    if (task.completion) {
-        color = COLOR_COMPLETED;
-    }
-    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) {
-        color = COLOR_OVERDUE;
-    }
-    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) {
-        color = COLOR_SOON;
-    }
-    else {
-        color = COLOR_LATER;
-    }
+    
+    if (task.completion) color = COLOR_COMPLETED;
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) color = COLOR_OVERDUE;
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) color = COLOR_SOON;
+    else color = COLOR_LATER;
+    
     return color;
 }
 

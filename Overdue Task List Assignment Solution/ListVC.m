@@ -29,7 +29,7 @@
     [self loadTaskList];
     
     // Retrieve the saved sort mode (automatic or manual)
-    self.sortMode = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:SORT_MODE];
+    self.sortMode = [[[NSUserDefaults standardUserDefaults] objectForKey:SORT_MODE] boolValue];
     
     // Prepare the RefreshControl - pull down to sort by due date (and switch to automatic sort mode if in manual mode)
     [self createRefreshControl];
@@ -237,13 +237,9 @@
 -(void)didEditTask:(Task *)task
 {
     // In automatic sort mode, update the list position of the added task. In manual mode, skip this part and just save and update the view.
-    if (self.sortMode == AUTOMATIC_SORT_MODE) { //Wenn sortMode auf manuell ist: nicht ordnen, nur speichern
-        if (task.completion) {
-            [self moveCompletedTaskToCorrectPosition:task];
-        }
-        else {
-            [self addUncompletedTaskAtCorrectPosition:task];
-        }
+    if (self.sortMode == AUTOMATIC_SORT_MODE) {
+        if (task.completion) [self moveCompletedTaskToCorrectPosition:task];
+        else [self addUncompletedTaskAtCorrectPosition:task];
     }
 
     [self saveChanges];
@@ -257,9 +253,7 @@
 {
     // Make tasklist savable
     NSMutableArray *savableTaskList = [[NSMutableArray alloc] init];
-    for (Task *task in self.taskList) {
-        [savableTaskList addObject:[task taskAsAPropertyList]];
-    }
+    for (Task *task in self.taskList) [savableTaskList addObject:[task taskAsAPropertyList]];
     
     // Save tasklist
     [[NSUserDefaults standardUserDefaults] setObject:savableTaskList forKey:TASK_LIST];
@@ -310,18 +304,12 @@
 -(UIColor *)colorForTask:(Task *)task
 {
     UIColor *color = [[UIColor alloc] init];
-    if (task.completion) {
-        color = COLOR_COMPLETED;
-    }
-    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) {
-        color = COLOR_OVERDUE;
-    }
-    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) {
-        color = COLOR_SOON;
-    }
-    else {
-        color = COLOR_LATER;
-    }
+    
+    if (task.completion) color = COLOR_COMPLETED;
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_OVERDUE) color = COLOR_OVERDUE;
+    else if ([task.date timeIntervalSinceNow] <= TIME_INTERVAL_SOON) color = COLOR_SOON;
+    else color = COLOR_LATER;
+    
     return color;
 }
 
@@ -405,12 +393,14 @@
 {
     self.sortMode = MANUAL_SORT_MODE;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.sortMode) forKey:SORT_MODE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)makeSortModeAutomatic
 {
     self.sortMode = AUTOMATIC_SORT_MODE;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.sortMode) forKey:SORT_MODE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)createRefreshControl
