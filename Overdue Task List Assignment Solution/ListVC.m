@@ -129,7 +129,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.taskList removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self saveChanges];
+        [self saveTaskList];
     }
 }
 
@@ -153,12 +153,8 @@
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Only uncompleted tasks are allowed to be reordered. Completed tasks should remain at the bottom of the list.
-    if ([self.taskList[indexPath.row] completion]) {
-        return NO;
-    }
-    else {
-        return YES;
-    }
+    if ([self.taskList[indexPath.row] completion]) return NO;
+    else return YES;
 }
 
 // Only allow certain target while reordering
@@ -197,10 +193,10 @@
         cell.detailTextLabel.attributedText = [self strikethroughString:dateString];
         [self moveCompletedTaskToCorrectPosition:task];
     }
-    [self saveChanges];
+    [self saveTaskList];
     [self.tableView reloadData];
 
-    // "return nil" means that the tapped cell won't be selected. I don't want it to stay highlighted.
+    // "return nil" means that the tapped cell won't be selected. I don't want it to stay highlighted after tapping, so I return nil.
     return nil;
 }
 
@@ -226,7 +222,7 @@
     if (self.sortMode == AUTOMATIC_SORT_MODE) [self addUncompletedTaskAtCorrectPosition:task];
     else if (self.sortMode == MANUAL_SORT_MODE) [self.taskList insertObject:task atIndex:0];
     
-    [self saveChanges];
+    [self saveTaskList];
 
     [self dismissViewControllerAnimated:YES completion:nil];
     [self.tableView reloadData];
@@ -242,14 +238,14 @@
         else [self addUncompletedTaskAtCorrectPosition:task];
     }
 
-    [self saveChanges];
+    [self saveTaskList];
     [self.tableView reloadData];
 }
 
 #pragma mark - Helper Methods
 #pragma mark Persistance
 // Saving
--(void)saveChanges
+-(void)saveTaskList
 {
     // Make tasklist savable
     NSMutableArray *savableTaskList = [[NSMutableArray alloc] init];
@@ -381,7 +377,7 @@
     
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
-    [self saveChanges];
+    [self saveTaskList];
     
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull down to sort by date"];
     
@@ -438,7 +434,7 @@
     self.navigationItem.rightBarButtonItem.enabled = YES;
     
     // Save the new order
-    [self saveChanges];
+    [self saveTaskList];
 }
 
 // Reset the app
