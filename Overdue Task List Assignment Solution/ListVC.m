@@ -253,7 +253,7 @@
     
     // Save tasklist
     [[NSUserDefaults standardUserDefaults] setObject:savableTaskList forKey:TASK_LIST];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    // [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 // Loading
@@ -389,14 +389,14 @@
 {
     self.sortMode = MANUAL_SORT_MODE;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.sortMode) forKey:SORT_MODE];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    // [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)makeSortModeAutomatic
 {
     self.sortMode = AUTOMATIC_SORT_MODE;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.sortMode) forKey:SORT_MODE];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    // [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 -(void)createRefreshControl
