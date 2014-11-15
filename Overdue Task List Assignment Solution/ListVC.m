@@ -43,9 +43,7 @@
 #pragma mark - Lazy Instantiation of Properties
 -(NSMutableArray *)taskList
 {
-    if (!_taskList) {
-        _taskList = [[NSMutableArray alloc] init];
-    }
+    if (!_taskList) _taskList = [[NSMutableArray alloc] init];
     return _taskList;
 }
 
@@ -139,6 +137,8 @@
     Task *task = self.taskList[sourceIndexPath.row];
     [self.taskList removeObject:task];
     [self.taskList insertObject:task atIndex:destinationIndexPath.row];
+    
+    // When tasks are reordered, the sort mode switches to manual
     [self makeSortModeManual];
     
     // Show tutorial message the first time tasks are reordered manually
@@ -157,7 +157,7 @@
     else return YES;
 }
 
-// Only allow certain target while reordering
+// Only allow certain targets while reordering (don't allow tasks to be dragged under a completed task)
 -(NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
 {
     // If target index is out of bounds: Reduce it.
@@ -193,6 +193,7 @@
         cell.detailTextLabel.attributedText = [self strikethroughString:dateString];
         [self moveCompletedTaskToCorrectPosition:task];
     }
+    
     [self saveTaskList];
     [self.tableView reloadData];
 
@@ -313,29 +314,20 @@
 // Single uncompleted task
 -(void)addUncompletedTaskAtCorrectPosition:(Task *)task
 {
-    // If the task is already in the list: Remove it before inserting it in the right place.
-    if ([self.taskList containsObject:task]) {
-        [self.taskList removeObject:task];
-    }
+    // If the task is already in the list: Remove it before inserting it at the right place.
+    if ([self.taskList containsObject:task]) [self.taskList removeObject:task];
 
-    // If this is the first/only task: Just add it to the list, nothing else.
-    if (self.taskList.count < 1) {
-        [self.taskList addObject:task];
-        return;
-    }
+    // If this is the first/only task: Just add it to the list, nothing else. (addObject's return value is void, so I can just write return before it to end the method immediately after addObject is done. Same thing below.)
+    if (self.taskList.count < 1) return [self.taskList addObject:task];
     
     // Find the correct place for the task
     for (int i = 0; i < self.taskList.count; i++) {
         Task *comparedTask = self.taskList[i];
-        if ([task.date timeIntervalSinceReferenceDate] <= [comparedTask.date timeIntervalSinceReferenceDate] || comparedTask.completion) {
-            [self.taskList insertObject:task atIndex:i];
-            break;
-        }
+        if ([task.date timeIntervalSinceReferenceDate] <= [comparedTask.date timeIntervalSinceReferenceDate] || comparedTask.completion)
+            return [self.taskList insertObject:task atIndex:i];
         // If the correct place is at the end of the list:
-        else if ([self.taskList indexOfObject:comparedTask] == self.taskList.count-1) {
-            [self.taskList addObject:task];
-            break;
-        }
+        else if ([self.taskList indexOfObject:comparedTask] == self.taskList.count-1)
+            return [self.taskList addObject:task];
     }
 }
 
@@ -347,14 +339,10 @@
         
         for (int i = 0; i < self.taskList.count; i++) {
             Task *comparedTask = self.taskList[i];
-            if (comparedTask.completion) {
-                [self.taskList insertObject:task atIndex:i];
-                break;
-            }
-            else if ([self.taskList indexOfObject:comparedTask] == self.taskList.count-1) {
-                [self.taskList addObject:task];
-                break;
-            }
+            if (comparedTask.completion)
+                return [self.taskList insertObject:task atIndex:i];
+            else if ([self.taskList indexOfObject:comparedTask] == self.taskList.count-1)
+                return [self.taskList addObject:task];
         }
     }
 }
@@ -367,12 +355,8 @@
     NSArray *unsortedTaskList = [self.taskList copy];
     self.taskList = nil;
     for (Task *task in unsortedTaskList) {
-        if (!task.completion) {
-            [self addUncompletedTaskAtCorrectPosition:task];
-        }
-        else {
-            [self.taskList addObject:task];
-        }
+        if (!task.completion) [self addUncompletedTaskAtCorrectPosition:task];
+        else [self.taskList addObject:task];
     }
     
     [self.tableView reloadData];
@@ -389,7 +373,7 @@
 {
     self.sortMode = MANUAL_SORT_MODE;
     [[NSUserDefaults standardUserDefaults] setObject:@(self.sortMode) forKey:SORT_MODE];
-    // [[NSUserDefaults standardUserDefaults] synchronize];
+    // [[NSUserDefaults standardUserDefaults] synchronize];   // Not necessary. Is called automatically periodically. (I hear about 15 seconds after a change, but maybe even more quickly or more often, because I couldn't get the app to not save a change, no matter how quickly I quit the app by hitting the Xcode stop button.) I call it in applicationDidEnterBackground in AppDelegate.m, though.
 }
 
 -(void)makeSortModeAutomatic

@@ -84,12 +84,10 @@
     self.dateLabel.text = [self stringFromDate:self.task.date];
     
     // Checkbox
-    if (self.task.completion) {
+    if (self.task.completion)
         [self.completionButton setImage:[UIImage imageNamed:@"checkBoxMarked.png"] forState:UIControlStateNormal];
-    }
-    else {
+    else
         [self.completionButton setImage:[UIImage imageNamed:@"checkBox.png"] forState:UIControlStateNormal];
-    }
     
     // Background color
     self.view.backgroundColor = [self colorForTask:self.task];
