@@ -391,7 +391,7 @@
     [self.refreshControl addTarget:self action:@selector(sortTaskListByDateAndSwitchToAutomaticSorting) forControlEvents:UIControlEventValueChanged];
 }
 
-#pragma mark - IBActions
+#pragma mark - Actions
 - (IBAction)editPressed:(UIBarButtonItem *)sender
 {
     // Put table in editing mode
@@ -405,7 +405,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
-- (IBAction)donePressed:(UIBarButtonItem *)sender
+- (void)donePressed:(UIBarButtonItem *)sender
 {
     // Exit editing mode
     [self.tableView setEditing:NO animated:YES];
